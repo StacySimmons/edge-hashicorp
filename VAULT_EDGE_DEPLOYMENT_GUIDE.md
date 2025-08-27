@@ -18,6 +18,7 @@ This guide covers the complete setup for sending both Vault audit logs and telem
 ## Part 1: Cribl Edge Configuration
 
 ### Step 1: Update Edge Helm Values
+## Not completely correct. Review and edit this. Not certain service config will work in Helm
 
 Create or update your Cribl Edge `values.yaml` to include the service and port configuration:
 
