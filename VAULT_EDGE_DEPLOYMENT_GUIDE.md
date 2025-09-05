@@ -29,19 +29,18 @@ Create or update your Cribl Edge `values.yaml` to include the service and port c
 # Service configuration for Vault integration
 service:
   # Enable additional service for Vault integration
-  vault:
-    enabled: true
-    name: cribl-edge-service
-    type: ClusterIP
-    ports:
-      - name: syslog
-        port: 9514
-        targetPort: 9514
-        protocol: TCP
-      - name: statsd
-        port: 8125
-        targetPort: 8125
-        protocol: UDP
+  enabled: true
+  name: cribl-edge-service
+  type: ClusterIP
+  ports:
+    - name: syslog
+      port: 9514
+      targetPort: 9514
+      protocol: TCP
+    - name: statsd
+      port: 8125
+      targetPort: 8125
+      protocol: UDP
 
 # Pod configuration - expose required ports
 podSpec:
@@ -55,20 +54,7 @@ podSpec:
           containerPort: 8125
           protocol: UDP
 
-# If your Edge chart doesn't support the above structure,
-# use the standard service configuration:
-service:
-  enabled: true
-  type: ClusterIP
-  ports:
-    - name: syslog
-      port: 9514
-      targetPort: 9514
-      protocol: TCP
-    - name: statsd
-      port: 8125
-      targetPort: 8125
-      protocol: UDP
+
 ```
 
 ### Step 2: Deploy/Update Cribl Edge
