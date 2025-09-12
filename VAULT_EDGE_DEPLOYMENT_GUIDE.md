@@ -114,7 +114,32 @@ kubectl get endpoints -n cribl cribl-edge-service
 # Test service DNS resolution
 kubectl run -it --rm debug --image=busybox --restart=Never -- nslookup cribl-edge-service.cribl.svc.cluster.local
 ```
+### Step 5: Create pre-processor for Audit Logs
 
+Create a pipeline to parse the syslog as JSON and attach it as a pre-processing pipeline to the Syslog source:
+```bash
+{
+  "id": "parse_vault_logs",
+  "conf": {
+    "output": "default",
+    "streamtags": [],
+    "groups": {},
+    "asyncFuncTimeout": 1000,
+    "functions": [
+      {
+        "filter": "true",
+        "conf": {
+          "mode": "extract",
+          "type": "json",
+          "srcField": "_raw"
+        },
+        "id": "serde"
+      }
+    ],
+    "description": ""
+  }
+}
+```
 ## Part 2: HashiCorp Vault Configuration
 
 ### Step 1: Prepare Vault Helm Values
